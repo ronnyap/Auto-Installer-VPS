@@ -51,6 +51,15 @@ apt-file update
 vnstat -u -i eth0
 service vnstat restart
 
+# install screenfetch
+cd
+wget 'https://raw.githubusercontent.com/IlhamArrouf/IlhamGanteng/master/screeftech-dev'
+mv screeftech-dev /usr/bin/screenfetch
+chmod +x /usr/bin/screenfetch
+echo "clear" >> .profile
+echo "screenfetch" >> .profile
+echo "date" >> .profile
+
 # install webserver
 cd
 rm /etc/nginx/sites-enabled/default
@@ -152,6 +161,8 @@ service vnstat restart
 
 # downlaod script
 cd
+echo "0 0 * * * root /usr/bin/reboot" > /etc/cron.d/reboot
+echo "* * * * * service dropbear restart" > /etc/cron.d/dropbear
 
 # finalisasi
 chown -R www-data:www-data /home/vps/public_html
